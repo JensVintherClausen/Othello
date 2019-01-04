@@ -77,21 +77,7 @@ class GameState:
         if cuda:
             ret = ret.cuda()
         return ret
-    '''
-    def toNetState(self, cuda = False):
-        ret = torch.zeros(1,3,8,8)
-        for i in range(8):
-            for j in range(8):
-                if self.board[i,j] == 1:
-                    ret[0,0,i,j] = 1
-                elif self.board[i,j] == 2:
-                    ret[0,1,i,j] = 1
-        if self.player == 1:
-            ret[0,2,:,:] = torch.ones(8,8)
-        if cuda:
-            ret = ret.cuda()
-        return ret
-    '''
+
     def toNetState(self, cuda = False):
         ret = torch.zeros(1,2,GameState.height,GameState.width)
         enemy = self.enemy()
@@ -178,18 +164,7 @@ class GameState:
             print("White Wins!")
         else:
             print("Draw!")
-    '''
-    def score(self):
-        black = 0
-        white = 0
-        for xCord in range(8):
-            for yCord in range(8):
-                if self.board[xCord][yCord] == 1:
-                    black += 1
-                elif self.board[xCord][yCord] == 2:
-                    white += 1
-        return black, white
-    '''
+	
     def score(self):
         enemy = self.enemy()
         p = 0
